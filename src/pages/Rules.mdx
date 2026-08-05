@@ -1,0 +1,154 @@
+import { VectorChargesDemo } from '@/components/docs/VectorChargesDemo';
+import { OverrideDemo } from '@/components/docs/OverrideDemo';
+import { VectorTable } from '@/components/docs/reference';
+import { ArchetypeGuide } from '@/components/game/panels/ArchetypeGuide';
+import { ARCHETYPE_DEFS_IN_ORDER, ARCHETYPE_REGISTRY } from '@/lib/chess/archetypes';
+
+export const Omni = ARCHETYPE_REGISTRY.omni;
+export const archetypeCount = ARCHETYPE_DEFS_IN_ORDER.length;
+
+> **TL;DR** — It's chess with a twist: **5.95 billion** possible openings, and your **7 back-rank Anomalies** run on batteries. Spend all 10 charges and they freeze forever.
+
+## One-Minute Overview
+
+| What's the Same | What's Different |
+|-----------------|------------------|
+| 8×8 board, 16 pieces per side | Back-rank pieces have **limited moves** |
+| King & Pawns move normally | 7 **Anomalies** replace Queen/Rooks/Bishops/Knights |
+| Checkmate wins | Each Anomaly has **10 charges** that deplete |
+| Captures work identically | Pieces can become **Gridlocked** (frozen) |
+| | **No castling — [Override](#override-when-the-king-takes-the-wheel) instead** |
+
+> **What's an Anomaly?** Your 7 back-rank pieces. Unlike a normal chess piece, an Anomaly has **no fixed move of its own** — it moves *only* as its **charges** allow. All 7 are the same kind of piece; they differ *only* in how those charges are split across Leap, Orthogonal, and Diagonal moves (you'll see [exactly how](#the-core-mechanic-vector-charges) just below).
+
+## The Constants: King & Pawns
+
+Start with what you already know. **King and Pawns move normally** — unlike the 7 Anomalies, they have no charges to spend, so they never run dry:
+
+| Piece | Rules |
+|-------|-------|
+| **King** | 1 square any direction. Must escape check. **No castling.** |
+| **Pawns** | Standard chess pawns — 2-square first move, en passant, and captures diagonally. |
+
+### Promotion: The {Omni.alias} Reward
+
+When a pawn reaches the back rank, it **always** promotes to a **{Omni.alias} ({Omni.icon})** — your reward for pushing pawns (it's the all-vector **Omni** build, listed as "{Omni.alias}" in the [Archetype guide](#the-archetype-system) below):
+
+- **{Omni.sharedPool} fully-flexible charges** you can freely spend on *any* movement type (not restricted like the Anomalies below)
+- The most adaptable piece in the game
+
+> 💡 Even the {Omni.alias} runs on charges — and managing them is how you win.
+
+## The Core Mechanic: Vector Charges
+
+Here's the twist that changes everything: your **7 back-rank Anomalies run on batteries.** Each starts with exactly **10 movement charges**, split across three **vectors** — and every vector is just a chess move you already know:
+
+<VectorTable />
+
+**Each move you make burns one charge from that move's vector — and it's gone for good. Charges never come back.** Spend all three vectors and the piece Gridlocks. Try it yourself — each legal move lights up in its vector's color:
+
+> 🧪 Use **‹ ›** to flip through all {archetypeCount} archetypes — each one rolls a fresh charge split, exactly like a new game. Cycle back to any archetype to roll it again.
+
+<VectorChargesDemo />
+
+### Gridlock: When a Piece Runs Dry
+
+When an Anomaly hits **zero across all three vectors**, it's **Gridlocked**—frozen in place for good:
+
+| Gridlocked pieces… | …but they still… |
+|--------------------|------------------|
+| ❌ Can't move | ✅ Block paths |
+| ❌ Can't threaten | ✅ Get captured |
+
+> ⚠️ **Key Insight:** A Gridlocked piece goes gray and becomes dead weight. Use yours as shields—or bleed enemy charges dry and let their frozen pieces wall them in.
+
+## The Archetype System
+
+Each Anomaly is randomly assigned an **archetype** that determines its charge distribution. **You don't need to memorize these to play** — tap any archetype below to see its type, alias, and specialty:
+
+<div className="not-prose my-6">
+  <ArchetypeGuide />
+</div>
+
+> 🎯 **Both players get identical, mirrored armies** — no luck advantage.
+
+### Random Openings
+
+Every game starts fresh — no opening book to memorize.
+
+**What's randomized:**
+- **Position** — King and 7 Anomalies shuffle across the back rank
+- **Composition** — each Anomaly's archetype is rolled at random
+- **Balance** — charges always split 24 / 23 / 23 across the three vectors
+
+Both sides get the **same mirrored army** — fair variety, never a coin-flip advantage.
+
+> 🌐 Online PvP deals the same Balanced armies to both players.
+
+### How Many Openings? (≈5.95 Billion)
+
+**The short version:** just over **5.95 billion** different boards the game *can* deal (exactly 5,950,517,760). You'd have to play about **91,000 games** before you'd even have a coin-flip chance of seeing the same board twice — in other words, **you will never replay the same opening.**
+
+<details className="not-prose my-6 rounded-xl border border-white/10 bg-gc-panel/50 px-4 py-3">
+<summary className="cursor-pointer select-none font-semibold text-gc-text">Where does 5.95 billion come from?</summary>
+
+<div className="mt-3 text-[13px] leading-relaxed text-gc-text-dim [&_strong]:text-gc-text [&_strong]:font-semibold [&_ol]:my-2 [&_ol]:space-y-1 [&_p]:my-2">
+
+**Four simple guardrails keep every Balanced army fair:**
+
+1. **Exact totals** — the seven Anomalies' charges always add up to **24 / 23 / 23** across Leap / Orthogonal / Diagonal. Same budget, every game.
+2. **At most 2 Absolutes** — no more than two "one-trick" pieces that dump all 10 charges into a single direction, so the board never collapses into one kind of move.
+3. **At most 2 of the same archetype** — you'll never be handed a monotonous 7-of-a-kind army.
+4. **Split bishops** — if an army happens to roll two pure-Diagonal Absolutes (the only truly color-locked piece), they're placed on opposite-colored squares — one light, one dark — so you always get a genuine light-and-dark bishop pair instead of two that cover the same color.
+
+The game builds every army to already satisfy all four — there's no lucky re-roll and no lopsided hand to fix. The final count comes from four steps:
+
+1. **Start with every possible army.** Each Anomaly can roll 1 of 36 builds, and there are 7 of them: 36⁷ = **78,364,164,096** raw armies.
+2. **Keep only the fair ones (rules 1–3).** Filtering to exactly 24 / 23 / 23 with ≤2 Absolutes and ≤2 duplicates leaves **743,855,490** valid armies.
+3. **Place the King (8 files).** Each army can start with the King on any of 8 files: 743,855,490 × 8 = **5,950,843,920** boards.
+4. **Split the bishops (rule 4).** Removing the rare same-color double-bishop boards drops 326,160, giving **5,950,517,760** distinct openings.
+
+Because the sampler is **uniform**, that 5.95 billion is the *effective* variety — not just a theoretical ceiling. Every valid board is equally likely to be dealt.
+
+</div>
+
+</details>
+
+
+## Override: When the King Takes the Wheel
+
+A desperate, one-way gamble — board a friendly Anomaly and pilot it yourself:
+
+| What Happens | The Catch |
+|--------------|-----------|
+| King steps onto a friendly Anomaly | Fuse into one **royal** piece — no dismount, ever |
+| Piloted piece moves like its host | Burns 1 charge per move |
+| Still counts as your King | Can be checked — and **must** respond |
+| Its charges are now your life | Run them dry (0/0/0) → **Gridlocked Death**, instant loss |
+
+<OverrideDemo />
+
+### Gridlocked Death
+
+If your Piloted Anomaly hits **zero across all vectors**, your King is sealed inside a **Gridlocked bunker** — an immobile royal piece with no legal moves. **Instant loss.**
+
+> ⚠️ **The {Omni.alias} Exception:** You **cannot** Override a {Omni.alias} — the pawn that promoted into it is already piloting.
+
+## How to Win
+
+| Outcome | Trigger |
+|---------|---------|
+| **Win** | Checkmate the enemy King, or the opponent resigns |
+| **Win** | Opponent's Piloted Anomaly suffers **Gridlocked Death** (runs dry while carrying the King) |
+| **Draw** | Stalemate, threefold repetition, the fifty-move rule, or all Anomalies Gridlocked with no pawn moves left |
+
+## Strategy Tips
+
+1. **Spend every charge effectively** — each charge is burned permanently and can never be recharged, so make every move count instead of wasting one just to reposition.
+2. **Track the vector math** — each piece's Leap, Orthogonal, and Diagonal charges deplete independently, and its *movement shape* narrows as they run dry. Watch this on both sides — read what your key pieces (and your opponent's) can *still* do and plan a move ahead, so a shape change never catches you off guard.
+3. **Bleed them dry** — pressure an enemy Anomaly so it must keep moving to stay safe; every escape spends a charge. A piece you push to **Gridlock** freezes into a dead wall you can box them in with.
+4. **Spread the load** — moving one piece over and over drains it into Gridlock while the rest sit idle. Rotate your active pieces to keep your whole army mobile.
+5. **Push pawns for {Omni.alias}s** — promotion mints a {Omni.alias} with **{Omni.sharedPool} fully-flexible charges** spendable on any vector. Fewer charges than an Anomaly's 10, but total freedom — and it's the only way to make one, so a late-game passed pawn is a real threat.
+6. **Override only when cornered** — with no castling, boarding an adjacent friendly Anomaly is your King's one escape hatch: a trapped King can borrow that piece's movement to break out, or weaponize a strong host to attack. But it's a one-way commitment — **no dismount** — and every move now **burns the host's charges**. Run that pool dry and it's **Gridlocked Death — an instant loss**. Treat it as a last resort, and never board a piece that's nearly empty.
+
+> 💡 Gridlocked pieces still block lines — use them as walls. Pawns can never be Gridlocked.

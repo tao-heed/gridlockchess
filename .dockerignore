@@ -1,0 +1,32 @@
+# Build context for the engine-server image (Dockerfile). Keep it tiny: the image
+# only needs server.js, variants.ini, and package*.json — everything else is noise.
+node_modules
+android
+dist
+dist-ssr
+build
+coverage
+bin
+public
+src
+docs
+.git
+.github
+.vscode
+.scratch
+*.log
+*.apk
+Dockerfile
+.dockerignore
+README.md
+LICENSE
+# Frontend/config files not used by the server image:
+index.html
+vite.config.ts
+vitest.config.ts
+tsconfig.json
+tailwind.config.js
+postcss.config.js
+eslint.config.js
+pwa-assets.config.ts
+capacitor.config.ts

@@ -1,0 +1,49 @@
+Gridlock Chess — Proprietary License
+Copyright (c) 2026 b33zsm00th. All rights reserved.
+
+  ┌───────────────────────────────────────────────────────────────────────┐
+  │ OWNER NAME                                                             │
+  │ This file is static legal text and holds the owner name literally.    │
+  │ The app's UI (footer + in-app Licenses page) reads the owner from a   │
+  │ single source of truth: src/constants/brand.ts (`BRAND.owner`).       │
+  │ If the owner ever changes, update BRAND.owner AND this file.          │
+  └───────────────────────────────────────────────────────────────────────┘
+
+1. OWNERSHIP
+   "Gridlock Chess" — including its source code, game rules text, documentation,
+   original artwork, sound arrangement, user interface, and all other original
+   material authored for this project (the "Software") — is the exclusive
+   property of b33zsm00th (the "Owner") and is protected by copyright
+   and other intellectual property laws.
+
+   This license covers ONLY the Owner's original work. Third-party components
+   redistributed with or used by the Software (for example Fairy-Stockfish,
+   audio, fonts, and open-source libraries) remain under their own respective
+   licenses; see the in-app "Licenses" page and each component's upstream terms.
+
+2. ALL RIGHTS RESERVED
+   No license or right is granted, whether express or implied. Except as
+   permitted by mandatory applicable law, you may NOT, without the Owner's prior
+   written permission:
+     (a) copy, reproduce, or redistribute the Software or any part of it;
+     (b) modify, adapt, translate, or create derivative works from it;
+     (c) reverse engineer, decompile, or disassemble it, except to the limited
+         extent this restriction is expressly prohibited by applicable law;
+     (d) sell, rent, lease, sublicense, or otherwise commercially exploit it;
+     (e) remove or alter any copyright, trademark, or proprietary notice.
+
+3. TRADEMARKS
+   "Gridlock Chess" and its associated names, logos, and wordmarks are
+   trademarks of the Owner. Nothing in this license grants any right to use them.
+
+4. NO WARRANTY
+   THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+   IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+   FITNESS FOR A PARTICULAR PURPOSE, AND NONINFRINGEMENT.
+
+5. LIMITATION OF LIABILITY
+   IN NO EVENT SHALL THE OWNER BE LIABLE FOR ANY CLAIM, DAMAGES, OR OTHER
+   LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT, OR OTHERWISE, ARISING FROM,
+   OUT OF, OR IN CONNECTION WITH THE SOFTWARE OR ITS USE.
+
+For licensing inquiries, contact the Owner.

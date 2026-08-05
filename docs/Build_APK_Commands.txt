@@ -1,0 +1,48 @@
+------ Run these commands to build APK
+
+  1. Build + Capacitor sync
+  npm run cap:sync
+  1. → tsc -b && vite build → copied dist/ into android/app/src/main/assets/public
+
+  2. Gradle assemble
+  cd android && ./gradlew assembleDebug --offline
+  2. → 95 tasks (27 executed, 68 up-to-date) → BUILD SUCCESSFUL in 33s
+
+  3. Copy APK
+  cp "C:/New folder/test/android/app/build/outputs/apk/debug/app-debug.apk" ~/Downloads/GridlockChess-latest.apk && echo "Copied."
+
+------ Another way:
+
+Unix/Bash:
+cd "C:/New folder/test" && npm run cap:sync 2>&1
+cat "C:/Users/TAO-HE~1/AppData/Local/Temp/claude/C--New-folder/783cb201-e220-4026-b8b7-9a9a04c19b59/tasks/b70ml42ws.output"
+cd "C:/New folder/test/android" && ./gradlew assembleDebug --offline 2>&1
+node -e "require('fs').copyFileSync('C:/New folder/test/android/app/build/outputs/apk/debug/app-debug.apk', require('os').homedir()+'/Downloads/GridlockChess-latest.apk');
+console.log('APK -> Downloads/GridlockChess-latest.apk')"
+#Done! GridlockChess-latest.apk is in your Downloads folder.
+
+------ Why run these 3 steps:
+
+  1. npm run cap:sync (TypeScript → Web → Android assets)
+
+  Your app is a React/TypeScript web app wrapped in a native Android shell via Capacitor. Before building the APK, the web code needs to be compiled:
+  - tsc -b — TypeScript compiler checks types and transpiles
+  - vite build — bundles everything into dist/ (minified JS, CSS, assets)
+  - cap sync android — copies dist/ into android/app/src/main/assets/public/ so the Android WebView can load it, and syncs any Capacitor plugin changes
+
+  2. ./gradlew assembleDebug (Android → APK)
+
+  Gradle is Android's native build tool. It takes the synced assets + the Java/Kotlin Capacitor shell and compiles them into an installable .apk file.
+  --offline tells Gradle to use its cached dependencies instead of downloading from the internet (faster).
+
+  3. cp ... ~/Downloads/ (move to accessible location)
+
+  The APK lands deep in android/app/build/outputs/apk/debug/ — copying it to Downloads makes it easy to find and install via ADB or file transfer to your
+  phone.
+
+  ---
+  Why not just one command?
+
+  npm run apk:copy in package.json chains all three — but it calls gradlew.bat which only works in Windows CMD, not in bash. So we run them separately using
+   ./gradlew (the Unix wrapper) instead.
+

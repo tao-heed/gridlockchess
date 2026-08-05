@@ -1,0 +1,139 @@
+import { BRAND } from '@/constants/brand';
+
+Gridlock Chess relies on excellent third-party libraries and creative assets from
+independent creators. This page covers privacy, our disclaimer, and credits for
+all the software and assets that make the game possible.
+
+## Privacy
+
+No accounts, no cookies, no tracking. Everything runs in your browser.
+
+- **Local storage only.** The game saves your preferences and progress to your browser's `localStorage` — specifically: your player name, mute setting, time control preference, and bot ladder progress (current tier and best streak). None of this data leaves your device and we have no server-side access to it.
+- **No analytics.** We run no analytics scripts and set no tracking cookies.
+- **Self-hosted fonts.** All fonts are bundled with the app and served from the same origin — no request is ever made to Google Fonts or any third-party CDN, so no external server can log your IP address. No external network request carries any identifiable data.
+- **Fairy-Stockfish (offline).** In the installed app the computer opponent runs **entirely on your device** — a native Fairy-Stockfish engine bundled inside the app. No game data is transmitted anywhere. (In the browser/dev build it talks to a local engine on your own machine; still no external server.)
+
+## Ownership & Your Rights
+
+**Gridlock Chess™** — its source code, original game design and mechanics, game-rules
+text, documentation, original artwork, sound arrangement, and user interface — is
+© {BRAND.startYear} **{BRAND.owner}**.
+**All rights reserved.** The game is proprietary software: it is not open source,
+and no right to copy, modify, redistribute, or commercially exploit it is granted
+except with the owner's prior written permission. The source code is not publicly
+distributed.
+
+The developer reserves the right to update, modify, add, or remove any feature
+of this application at any time without prior notice.
+
+This notice covers only our own original work. Every third-party component below
+remains under its own license, listed here in good-faith compliance with those
+terms — our thanks to their authors.
+
+## Game Engine — Fairy-Stockfish
+
+The computer opponent is powered by **[Fairy-Stockfish](https://github.com/fairy-stockfish/Fairy-Stockfish)**,
+a chess-variant engine derived from **[Stockfish](https://github.com/official-stockfish/Stockfish)**.
+Gridlock Chess runs Fairy-Stockfish to analyze our custom `gridlock` variant; all of our game
+rules (charges, Gridlock, Override) are enforced by our own code on top of it. The installed
+Android app bundles a build of Fairy-Stockfish compiled for Android (ARM64) using the
+[Android NDK](https://developer.android.com/ndk). This build includes a modification: a custom
+`fuel` UCI command that communicates per-piece charge state to the engine, enabling charge-aware
+search for the Gridlock variant. The desktop/dev build connects to a local engine proxy running
+a similarly modified binary.
+
+Fairy-Stockfish and Stockfish are free software, licensed under the
+**[GNU General Public License v3](https://www.gnu.org/licenses/gpl-3.0.html)**. In
+accordance with GPL v3 §6(b), we provide the following written offer:
+
+> Source Code Offer: We will provide the complete corresponding source code for the
+> modified Fairy-Stockfish binary distributed with this application to any third party
+> who requests it. To request the source, contact gridlockchess.dev at gmail dot com. This offer
+> is valid for three years from the date you received this application.
+
+- The engine is © the Fairy-Stockfish and Stockfish authors.
+- The upstream unmodified source is at [github.com/fairy-stockfish/Fairy-Stockfish](https://github.com/fairy-stockfish/Fairy-Stockfish).
+- The full text of the GPL v3 is available at [gnu.org/licenses/gpl-3.0.html](https://www.gnu.org/licenses/gpl-3.0.html).
+
+Our deepest thanks to the Stockfish and Fairy-Stockfish communities for making a
+world-class engine freely available.
+
+## Audio
+
+Sound effects are sourced from the creators below and renamed after the in-game
+event they serve. Most are from [Pixabay](https://pixabay.com), released under the
+[Pixabay Content License](https://pixabay.com/service/license-summary/) (free to
+use, attribution appreciated).
+
+| In-game sound | Creator / source |
+|---------------|------------------|
+| Piece move | [lichess.org](https://github.com/lichess-org/lila) |
+| Capture (cannon shot) | universfield · [Pixabay](https://pixabay.com) |
+| Vector exhausted (steam hiss) | Dragon-Studio · [Pixabay](https://pixabay.com) |
+| Gridlock (heavy impact) | u_xjrmmgxfru · [Pixabay](https://pixabay.com) |
+| Override (windy thud) | SoundReality · [Pixabay](https://pixabay.com) |
+| Game end (falling scream) | Nematoki · [Pixabay](https://pixabay.com) |
+| Check (gun load) | Foisal72 · [Pixabay](https://pixabay.com) |
+| Balanced mode (racecar rush) | Dragon-Studio · [Pixabay](https://pixabay.com) |
+| Promotion (metallic clang) | Freesound Community · [Pixabay](https://pixabay.com) |
+
+Thanks to every creator above for the sounds used in this game.
+
+## Fonts
+
+Typography is **self-hosted** — each family is bundled with the app (via
+[Fontsource](https://fontsource.org)) and served from the same origin, with no runtime
+request to Google Fonts. Each family is licensed under the
+[SIL Open Font License 1.1](https://openfontlicense.org).
+
+| Font | Designer |
+|------|----------|
+| [Inter](https://github.com/rsms/inter) | Rasmus Andersson |
+| [Space Grotesk](https://github.com/floriankarsten/space-grotesk) | Florian Karsten |
+| [JetBrains Mono](https://github.com/JetBrains/JetBrainsMono) | JetBrains |
+
+## Emoji
+
+The game's playing pieces — and several interface glyphs, such as the crown and battery icons —
+are standard **Unicode emoji** drawn by **your device's own emoji font**, not bundled with the app.
+Because no emoji artwork is redistributed, none requires attribution; it also means each piece's
+exact appearance varies from one phone or platform to another.
+
+## Third-Party Dependencies
+
+The following open-source projects were used to build this game, each released
+under the [MIT License](https://opensource.org/license/mit). Our thanks to their
+maintainers and contributors.
+
+| Project | Role |
+|---------|------|
+| [React](https://github.com/facebook/react) · [React DOM](https://github.com/facebook/react) | UI framework |
+| [React Router](https://github.com/remix-run/react-router) | Client-side routing |
+| [Framer Motion](https://github.com/framer/motion) | Animations and transitions |
+| [dnd kit](https://github.com/clauderic/dnd-kit) | Drag-and-drop interactions |
+| [MDX](https://github.com/mdx-js/mdx) | Markdown-driven documentation |
+| [remark-gfm](https://github.com/remarkjs/remark-gfm) · [rehype-slug](https://github.com/rehypejs/rehype-slug) · [rehype-autolink-headings](https://github.com/rehypejs/rehype-autolink-headings) | Markdown processing |
+| [Zod](https://github.com/colinhacks/zod) | Schema validation |
+| [Vite](https://github.com/vitejs/vite) | Build tooling |
+| [Tailwind CSS](https://github.com/tailwindlabs/tailwindcss) | Styling |
+| [Express](https://github.com/expressjs/express) · [ws](https://github.com/websockets/ws) · [cors](https://github.com/expressjs/cors) | Local engine proxy & online PvP relay server |
+| [Firebase](https://github.com/firebase/firebase-js-sdk) | Real-time database powering online PvP (Uplink) — Apache 2.0 |
+| [Capacitor](https://github.com/ionic-team/capacitor) | Native Android shell — wraps the web app into the installed `.apk` |
+
+> Each project retains its own copyright and license. Full license texts are
+> available at the linked repositories.
+>
+> **Build-only tools** (used to create the app but **not** redistributed inside it): the
+> **[Android NDK](https://developer.android.com/ndk)** (compiles the native engine for ARM),
+> **Gradle**, and the **Capacitor CLI**.
+
+## Disclaimer
+
+Gridlock Chess is provided **"as is"** without warranties of any kind, express or implied.
+We make no guarantee that the game will be error-free, uninterrupted, or that locally saved
+data will be preserved across browser updates or storage resets. Your use of the game is at
+your own risk.
+
+To the fullest extent permitted by applicable law, the creator shall not be liable for any
+direct, indirect, incidental, or consequential damages arising from your use of — or
+inability to use — the game, including any loss of locally saved game data.

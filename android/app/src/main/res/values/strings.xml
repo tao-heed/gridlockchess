@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Gridlock Chess</string>
+    <string name="title_activity_main">Gridlock Chess</string>
+    <string name="package_name">io.github.b33zsm00th.gridlockchess</string>
+    <string name="custom_url_scheme">io.github.b33zsm00th.gridlockchess</string>
+</resources>

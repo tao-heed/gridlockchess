@@ -1,0 +1,65 @@
+Every notable change to Gridlock Chess is recorded here. Dates use the
+year-month-day format, and version numbers follow
+[semantic versioning](https://semver.org).
+
+## Unreleased
+
+Changes landed but not yet shipped. On release day, rename this heading to the
+version and date (e.g. `## 0.2.0 — 2026-07-15`) and start a fresh Unreleased
+section above it.
+
+### Added
+
+- **Sandbox mode.** A free-form position editor — place any Kings, Pawns, and
+  Anomalies, choose each Anomaly's charge build (or make one a **Piloted Anomaly**),
+  set the side to move, then play it out Pass &amp; Play or against a bot. Opened from the
+  Opponent menu.
+- **Save & replay games to the Sandbox.** From a game's Replay panel, save the whole
+  game — or a rewound point — into your Sandbox library, then re-open it to scrub
+  through every move.
+
+### Changed
+
+- **Balanced armies are now exactly macro-balanced.** Every army's charges sum
+  to exactly 24 / 23 / 23 across Leap / Orthogonal / Diagonal, drawn by a uniform
+  sampler (no re-rolls, no lopsided hands). This is now the only generation mode.
+  The reachable opening pool is **5,950,517,760** distinct positions (down from
+  the earlier ~372 billion, which allowed lopsided armies).
+
+### Fixed
+
+### Removed
+
+- **Balanced / Exact mode toggle.** The two-mode split is gone; every game uses
+  the single Balanced (24 / 23 / 23) generator. Old saved games that recorded a
+  `pure` or `exact` mode load as Balanced.
+
+## 0.1.0 — 2026-06-28
+
+The first public release. Everything below is new.
+
+### Gameplay
+
+- **Random Anomaly army.** Each game, your back row is rolled fresh — seven
+  Anomalies with randomized stats, mirrored for both sides, so there is zero
+  material luck. Over 372 billion unique starting positions.
+- **Charge system.** Every piece moves along three vectors (Leap, Orthogonal,
+  Diagonal), and each move burns one charge from the vector it used. Charges
+  never come back. Spend a vector dry and that direction is gone for good.
+- **Gridlock.** A piece with all three vectors exhausted (0/0/0) Gridlocks —
+  it is stranded on the board, unable to move.
+- **Override.** A desperate, one-way gamble: step your King onto a friendly
+  Anomaly to fuse into a single royal piece. It moves like its host, burns a
+  charge per move, can still be checked, and loses instantly if its charges run
+  dry.
+- **AI opponent** powered by the Fairy-Stockfish engine, with multiple
+  difficulty tiers.
+- **Online play.** Challenge a friend over a private passcode-keyed room.
+
+### Interface
+
+- Animated board with drag-and-drop and click-to-move, each legal move lit in
+  its vector's color.
+- Quick Start walkthrough for first-time players.
+- In-app Rules reference and Licenses & Credits pages.
+- Sound effects and a mute toggle.

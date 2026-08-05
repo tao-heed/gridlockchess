@@ -1,0 +1,54 @@
+# docker-compose.yml — Oracle (or any VM) deploy for the Gridlock engine server.
+#
+#   1. Copy .env.example -> .env and fill it in (SITE_ADDRESS, FSF_URL, tuning).
+#   2. Open ports 80+443 in BOTH the Oracle security list AND the VM firewall.
+#      (Oracle Ubuntu images block everything in iptables by default — a classic
+#      gotcha. e.g.  sudo iptables -I INPUT -p tcp --dport 443 -j ACCEPT  and 443/80,
+#      or switch to ufw. Persist the rules.)
+#   3. Point SITE_ADDRESS's DNS A record at this VM's public IP.
+#   4. docker compose up -d --build
+#
+# Caddy fronts the engine and obtains/renews HTTPS automatically for SITE_ADDRESS.
+# The engine is NOT published to the host directly — only Caddy is exposed.
+#
+# NOTE: this compose file is for a self-managed VM (Oracle). On Koyeb you deploy the
+# Dockerfile image directly and Koyeb provides TLS — you do NOT use this file there.
+
+services:
+  engine:
+    build:
+      context: .
+      args:
+        FSF_URL: ${FSF_URL:?set FSF_URL in .env}
+    image: gridlock-engine
+    restart: unless-stopped
+    environment:
+      ENGINE_PORT: 3005
+      ENGINE_POOL_SIZE: ${ENGINE_POOL_SIZE:-2}
+      ENGINE_THREADS: ${ENGINE_THREADS:-2}
+      ENGINE_HASH: ${ENGINE_HASH:-256}
+      # Caddy is the only hop in front, so trust exactly 1 proxy for per-IP rate limits.
+      TRUST_PROXY: 1
+      ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-}
+      RATE_LIMIT_MAX: ${RATE_LIMIT_MAX:-60}
+    expose:
+      - "3005"
+
+  caddy:
+    image: caddy:2
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS:?set SITE_ADDRESS in .env}
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data
+      - caddy_config:/config
+    depends_on:
+      - engine
+
+volumes:
+  caddy_data:
+  caddy_config:

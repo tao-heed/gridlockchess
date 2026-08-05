@@ -1,0 +1,18 @@
+# Caddyfile — automatic HTTPS reverse proxy in front of the engine server.
+# SITE_ADDRESS comes from .env (e.g. chess.example.com). Caddy obtains and renews
+# a Let's Encrypt certificate for it automatically, as long as the domain resolves
+# to this VM and ports 80/443 are reachable from the internet.
+
+{$SITE_ADDRESS} {
+	encode zstd gzip
+
+	# Health/status can be hit directly; everything proxies to the engine container.
+	reverse_proxy engine:3005
+
+	# Basic hardening headers (defence-in-depth; the API is JSON, not a web page).
+	header {
+		-Server
+		X-Content-Type-Options nosniff
+		Referrer-Policy no-referrer
+	}
+}

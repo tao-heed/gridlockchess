@@ -1,0 +1,37 @@
+# Dependencies — reproduced by `npm install` from package.json + package-lock.json
+node_modules/
+
+# Build output — reproduced by `npm run build` from src/
+dist/
+dist-ssr/
+
+# Logs / runtime output (disposable)
+server.err
+*.log
+npm-debug.log*
+
+# Native engine binary — NOT reproducible from source. Windows-only, ~1.8 MB, and
+# not needed for Uplink PvP (only for solo-vs-bot). See bin/README.md for how to obtain
+# the right build per platform. The .mjs verification scripts in bin/ ARE committed.
+bin/*.exe
+bin/fairy-stockfish-largeboard_x86-64
+bin/fairy-stockfish_x86-64
+bin/fairy-stockfish
+
+# Local env files (may contain host-specific config like VITE_UPLINK_URL)
+.env
+.env.local
+.env.*.local
+
+# TypeScript incremental build cache
+tsconfig.tsbuildinfo
+
+# Editor / OS cruft
+.DS_Store
+Thumbs.db
+.vscode/*
+!.vscode/extensions.json
+
+# Claude Code files (local dev tool, not source)
+.claude/
+CLAUDE.md
